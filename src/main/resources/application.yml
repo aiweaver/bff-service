@@ -1,0 +1,18 @@
+promotion: action
+
+spring:
+  application:
+    name: bff-service
+  thymeleaf:
+    prefix: classpath:/static/html/
+
+api:
+  connect:
+    path: /
+  bff:
+    path: /
+  services:
+    account-service: http://localhost:8081
+    contents-service: http://localhost:8082
+    personalization-service: null
+    recommendation-service: http://localhost:8083
