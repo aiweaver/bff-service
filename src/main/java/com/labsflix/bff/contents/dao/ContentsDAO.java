@@ -13,15 +13,19 @@ import org.springframework.web.client.RestTemplate;
 @Repository("contentsDAO")
 public class ContentsDAO {
 
-	@Autowired
-	private RestTemplate restTemplate;
-	
 	@Value("${api.connect.path}")
 	private String apic;
-	
+
 	@Value("${api.services.contents-service}")
 	private String serviceUrl;
-	
+
+	private RestTemplate restTemplate;
+
+	@Autowired
+	public ContentsDAO(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
 	public List<Content> getContentsByCategory(String category) {
 		return Arrays.asList(restTemplate.getForObject(String.format("%s/v1/contents?category=%s", serviceUrl, category), Content[].class));
     }

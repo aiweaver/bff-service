@@ -14,44 +14,43 @@ import org.springframework.stereotype.Service;
 
 @Service("contentsService")
 public class ContentsService {
-	
-	@Autowired
+
 	private ContentsDAO contentsDAO;
-	
-	@Autowired
+
 	private EpisodeDAO episodeDAO;
-	
-	@Autowired
+
 	private TrailerDAO trailerDAO;
 
+	@Autowired
+	public ContentsService(ContentsDAO contentsDAO, EpisodeDAO episodeDAO, TrailerDAO trailerDAO) {
+		this.contentsDAO = contentsDAO;
+		this.episodeDAO = episodeDAO;
+		this.trailerDAO = trailerDAO;
+	}
+
 	public List<Content> getContentsByCategory(String category) {
-		List<Content> contents = contentsDAO.getContentsByCategory(category);
-		return contents;
+		return contentsDAO.getContentsByCategory(category);
 	}
 	
 	public List<Content> getContentsByTitle(String title) {
-		List<Content> contents = contentsDAO.getContentsByTitle(title);
-		return contents;
+		return contentsDAO.getContentsByTitle(title);
 	}
 	
 	public Content getContentsDetail(String id) {
-		Content content = contentsDAO.getContentsDetail(id);
-		return content;
+		return contentsDAO.getContentsDetail(id);
 	}
 	
 	public List<Season> getAllEpisodes(String id) {
-		List<Season> seasons = episodeDAO.getAllEpisodes(id);
-		return seasons;
+		return episodeDAO.getAllEpisodes(id);
 	}
 	
 	public List<Trailer> getTrailers(String id) {
-		List<Trailer> trailers = trailerDAO.getTrailers(id);
-		return trailers;
+		return trailerDAO.getTrailers(id);
 	}
 	
 	public List<Content> getSmiliars(String id, String category) {
 		Content content = this.getContentsDetail(id);
-		List<Content> similars = new ArrayList<Content>(getContentsByCategory(category));
+		List<Content> similars = new ArrayList<>(getContentsByCategory(category));
 		similars.remove(content);
 		return similars;
 	}

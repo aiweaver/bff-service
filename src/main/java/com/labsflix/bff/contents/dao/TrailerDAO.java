@@ -12,15 +12,19 @@ import org.springframework.web.client.RestTemplate;
 @Repository("trailerDAO")
 public class TrailerDAO {
 
-	@Autowired
-	private RestTemplate restTemplate;
-	
 	@Value("${api.connect.path}")
 	private String apic;
 	
 	@Value("${api.services.contents-service}")
 	private String serviceUrl;
-	
+
+	private RestTemplate restTemplate;
+
+	@Autowired
+	public TrailerDAO(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
 	public List<Trailer> getTrailers(String content) {
         return Arrays.asList(restTemplate.getForObject(String.format("%s/v1/contents/%s/trailers", serviceUrl, content), Trailer[].class));
     }

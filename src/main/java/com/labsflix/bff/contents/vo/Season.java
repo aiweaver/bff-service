@@ -2,9 +2,6 @@ package com.labsflix.bff.contents.vo;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown=true)
 public class Season {
 	
 	private int season;

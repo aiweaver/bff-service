@@ -1,8 +1,5 @@
 package com.labsflix.bff.contents.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import com.labsflix.bff.contents.service.ContentsService;
@@ -10,45 +7,45 @@ import com.labsflix.bff.contents.vo.Content;
 import com.labsflix.bff.contents.vo.Season;
 import com.labsflix.bff.contents.vo.Trailer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1")
 public class ContentsController {
 
-	@Autowired
 	private ContentsService contentsService;
-	
-	@RequestMapping(path="/contents", method = RequestMethod.GET, name="getContents")
+
+	@Autowired
+	public ContentsController(ContentsService contentsService) {
+		this.contentsService = contentsService;
+	}
+
+	@GetMapping("/contents")
 	public List<Content> getContents(@RequestParam(value = "category") String category) {
 		return contentsService.getContentsByCategory(category);
 	}
 	
-	@RequestMapping(path="/contents/search", method=RequestMethod.GET, name="searchContents")
+	@GetMapping("/contents/search")
 	public List<Content> searchContents(@RequestParam(value = "title") String title) {
 		return contentsService.getContentsByTitle(title);
 	}
 	
-	@RequestMapping(path = "/contents/{id}", method = RequestMethod.GET, name="getContentsDetail")
+	@GetMapping("/contents/{id}")
 	public Content getContentsDetail(@PathVariable(value = "id") String id) {
 		return contentsService.getContentsDetail(id);
 	}
 	
-	@RequestMapping(path="/contents/{id}/episodes", method=RequestMethod.GET, name="getAllEpisodes")
+	@GetMapping("/contents/{id}/episodes")
 	public List<Season> getAllEpisodes(@PathVariable(value = "id") String id) {
 		return contentsService.getAllEpisodes(id);
 	}
 	
-	@RequestMapping(path="/contents/{id}/trailers", method=RequestMethod.GET, name="getTrailers")
+	@GetMapping("/contents/{id}/trailers")
 	public List<Trailer> getTrailers(@PathVariable(value = "id") String id) {
 		return contentsService.getTrailers(id);
 	}
 	
-	@RequestMapping(path="/contents/{id}/similars", method=RequestMethod.GET, name="getSimilars")
+	@GetMapping("/contents/{id}/similars")
 	public List<Content> getSimilars(@PathVariable(value = "id") String id, @RequestParam(value = "category") String category) {
 		return contentsService.getSmiliars(id, category);
 	}

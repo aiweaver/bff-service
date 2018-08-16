@@ -1,8 +1,5 @@
 package com.labsflix.bff.contents.vo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown=true)
 public class Trailer {
 	
 	private String content;

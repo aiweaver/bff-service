@@ -9,18 +9,20 @@ import org.springframework.stereotype.Service;
 
 @Service("categoryService")
 public class CategoryService {
-	
-	@Autowired
+
 	private CategoryDAO categoryDAO;
 
+	@Autowired
+	public CategoryService(CategoryDAO categoryDAO) {
+		this.categoryDAO = categoryDAO;
+	}
+
 	public List<Category> getCategoryList () {
-		List<Category> categories = categoryDAO.getCategoryList();
-		return categories;
+		return categoryDAO.getCategoryList();
 	}
 	
 	public Category getCategory(String id) {
-		Category category = categoryDAO.getCategory(id);
-		return category;
+		return categoryDAO.getCategory(id);
 	}
 	
 }
