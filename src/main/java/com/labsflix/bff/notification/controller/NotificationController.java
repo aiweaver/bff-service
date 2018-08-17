@@ -18,7 +18,6 @@ public class NotificationController {
  
 	@RequestMapping(path="/notifications", method=RequestMethod.GET, name="getNotifications")
 	public List<Content> getNotifications() {
-		List<Content> notifications = notificationService.getNotifications();
-		return notifications;
+		return notificationService.getNotifications();
 	}
 }

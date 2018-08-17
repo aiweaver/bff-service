@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: bff-service
+  thymeleaf:
+    prefix: classpath:/static/html/
+  datasource:
+    initialization-mode: always
+    platform: h2
+    url: jdbc:h2:mem:mediadb;
+    username: sa
+    password: null
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+api:
+  connect:
+    path: /
+  bff:
+    path: /
+  services:
+    account-service: http://account-service:8081
+    contents-service: http://contents-service:8082
+    recommendation-service: http://recommendation-service:8083

@@ -62,13 +62,13 @@ public class HomeController {
 		return model;
 	}
 	
-	@GetMapping("/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.removeAttribute("username");
-		session.removeAttribute("profile");
-		return "redirect:/login";
-	}
+//	@GetMapping("/logout")
+//	public String logout(HttpServletRequest request) {
+//		HttpSession session = request.getSession();
+//		session.removeAttribute("username");
+//		session.removeAttribute("profile");
+//		return "redirect:/login";
+//	}
 	
 	@GetMapping("/home")
 	public String home(HttpServletRequest request) {

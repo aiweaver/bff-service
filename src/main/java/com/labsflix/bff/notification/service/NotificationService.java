@@ -14,7 +14,6 @@ public class NotificationService {
 	private NotificationDAO notificationDAO;
  
 	public List<Content> getNotifications() {
-		List<Content> contents = notificationDAO.getNotifications();
-		return contents;
+		return notificationDAO.getNotifications();
 	}
 }

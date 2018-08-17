@@ -1,5 +1,3 @@
-promotion: action
-
 spring:
   application:
     name: bff-service
