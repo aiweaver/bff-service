@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,11 +26,15 @@ public class HomeController {
 	
 	@Value("${api.bff.path}")
 	private String apiConnect;
-	
-	@Autowired
+
 	private ProfileService profileService;
 
-	@RequestMapping(value = "/index", method=RequestMethod.GET)
+	@Autowired
+	public HomeController(ProfileService profileService) {
+		this.profileService = profileService;
+	}
+
+	@GetMapping("/index")
 	public String index(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		
@@ -42,7 +47,7 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/login", method=RequestMethod.POST)
+	@GetMapping("/login")
 	public Model login(Account account, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String username = account.getUsername();
@@ -57,15 +62,15 @@ public class HomeController {
 		return model;
 	}
 	
-//	@RequestMapping(value = "/logout", method=RequestMethod.GET)
-//	public String logout(HttpServletRequest request) {
-//		HttpSession session = request.getSession();
-//		session.removeAttribute("username");
-//		session.removeAttribute("profile");
-//		return "redirect:/login";
-//	}
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("username");
+		session.removeAttribute("profile");
+		return "redirect:/login";
+	}
 	
-	@RequestMapping(value = "/home", method=RequestMethod.GET)
+	@GetMapping("/home")
 	public String home(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("username") == null) {
@@ -85,7 +90,7 @@ public class HomeController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/categories/{category}", method=RequestMethod.GET)
+	@GetMapping("/categories/{category}")
 	public String category(HttpServletRequest request, @PathVariable(name="category") String category) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("username") == null) {
@@ -96,7 +101,7 @@ public class HomeController {
 		return "category";
 	}
 
-	@RequestMapping(value = "/favorites", method=RequestMethod.GET)
+	@GetMapping("/favorites")
 	public String favorites(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("username") == null) {

@@ -5,6 +5,18 @@ spring:
     name: bff-service
   thymeleaf:
     prefix: classpath:/static/html/
+  datasource:
+    initialization-mode: always
+    platform: h2
+    url: jdbc:h2:mem:mediadb;
+    username: sa
+    password: null
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 api:
   connect:
@@ -14,5 +26,4 @@ api:
   services:
     account-service: http://localhost:8081
     contents-service: http://localhost:8082
-    personalization-service: null
     recommendation-service: http://localhost:8083

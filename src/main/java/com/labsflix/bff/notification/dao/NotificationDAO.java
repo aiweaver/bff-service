@@ -11,13 +11,14 @@ import org.springframework.web.client.RestTemplate;
 
 @Repository("notificationDAO")
 public class NotificationDAO {
-	
-	@Autowired
+
 	private RestTemplate restTemplate;
-	
-	@Value("${api.connect.path}")
-	private String apic;
- 
+
+	@Autowired
+	public NotificationDAO(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
 	@Value("${api.services.recommendation-service}")
 	private String serviceUrl;
 	
