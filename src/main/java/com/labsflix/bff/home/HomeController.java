@@ -58,13 +58,13 @@ public class HomeController {
 		return model;
 	}
 	
-//	@GetMapping("/logout")
-//	public String logout(HttpServletRequest request) {
-//		HttpSession session = request.getSession();
-//		session.removeAttribute("username");
-//		session.removeAttribute("profile");
-//		return "redirect:/login";
-//	}
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("username");
+		session.removeAttribute("profile");
+		return "redirect:/login";
+	}
 	
 	@GetMapping("/home")
 	public String home(HttpServletRequest request) {
@@ -72,9 +72,6 @@ public class HomeController {
 		if (session.getAttribute("username") == null) {
 			return "redirect:/index";
 		}
-
-		// Account, Personalization 호출
-		List<Profile> profiles = profileService.getProfiles("lpeterson2a@google.co.uk");
 
 		String username = (String) session.getAttribute("username");
 		if("lpeterson2a@google.co.uk".equals(username)){
@@ -96,13 +93,4 @@ public class HomeController {
 		return "category";
 	}
 
-	@GetMapping("/favorites")
-	public String favorites(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("username") == null) {
-			return "redirect:/index";
-		}
-		return "category";
-	}
-	
 }
