@@ -3,7 +3,7 @@ package com.labsflix.bff.category.controller;
 import java.util.List;
 
 import com.labsflix.bff.category.service.CategoryService;
-import com.labsflix.bff.category.vo.Category;
+import com.labsflix.bff.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

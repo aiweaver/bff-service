@@ -1,57 +1,50 @@
 package com.labsflix.bff.contents.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import com.labsflix.bff.contents.dao.ContentsDAO;
-import com.labsflix.bff.contents.dao.EpisodeDAO;
-import com.labsflix.bff.contents.dao.TrailerDAO;
-import com.labsflix.bff.contents.vo.Content;
-import com.labsflix.bff.contents.vo.Season;
-import com.labsflix.bff.contents.vo.Trailer;
+import com.labsflix.bff.domain.Content;
+import com.labsflix.bff.domain.Season;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service("contentsService")
 public class ContentsService {
 
-	private ContentsDAO contentsDAO;
+	@Value("${api.services.contents-service}")
+	private String serviceUrl;
 
-	private EpisodeDAO episodeDAO;
-
-	private TrailerDAO trailerDAO;
+	private RestTemplate restTemplate;
 
 	@Autowired
-	public ContentsService(ContentsDAO contentsDAO, EpisodeDAO episodeDAO, TrailerDAO trailerDAO) {
-		this.contentsDAO = contentsDAO;
-		this.episodeDAO = episodeDAO;
-		this.trailerDAO = trailerDAO;
+	public ContentsService(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
 	}
 
 	public List<Content> getContentsByCategory(String category) {
-		return contentsDAO.getContentsByCategory(category);
+		return Arrays.asList(restTemplate.getForObject(String.format("%s/v1/contents?category=%s", serviceUrl, category), Content[].class));
 	}
-	
+
 	public List<Content> getContentsByTitle(String title) {
-		return contentsDAO.getContentsByTitle(title);
+		return Arrays.asList(restTemplate.getForObject(String.format("%s/v1/contents/search?title=%s", serviceUrl, title), Content[].class));
 	}
-	
+
 	public Content getContentsDetail(String id) {
-		return contentsDAO.getContentsDetail(id);
+		return restTemplate.getForObject(String.format("%s/v1/contents/%s", serviceUrl, id), Content.class);
 	}
-	
-	public List<Season> getAllEpisodes(String id) {
-		return episodeDAO.getAllEpisodes(id);
+
+	public List<Season> getAllEpisodes(String content) {
+		return Arrays.asList(restTemplate.getForObject(String.format("%s/v1/contents/%s/episodes", serviceUrl, content), Season[].class));
 	}
-	
-	public List<Trailer> getTrailers(String id) {
-		return trailerDAO.getTrailers(id);
-	}
-	
+
 	public List<Content> getSmiliars(String id, String category) {
 		Content content = this.getContentsDetail(id);
 		List<Content> similars = new ArrayList<>(getContentsByCategory(category));
 		similars.remove(content);
 		return similars;
 	}
+
 }

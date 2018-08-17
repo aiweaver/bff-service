@@ -1,4 +1,4 @@
-package com.labsflix.bff.contents.vo;
+package com.labsflix.bff.domain;
 
 public class Episode {
 	

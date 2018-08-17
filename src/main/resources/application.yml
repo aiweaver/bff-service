@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: bff-service
+  thymeleaf:
+    prefix: classpath:/static/html/
+  jpa:
+    hibernate:
+      ddl-auto: update

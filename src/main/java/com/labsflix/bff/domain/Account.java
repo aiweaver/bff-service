@@ -1,4 +1,4 @@
-package com.labsflix.bff.account.vo;
+package com.labsflix.bff.domain;
 
 public class Account {
 

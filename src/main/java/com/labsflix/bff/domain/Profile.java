@@ -1,4 +1,4 @@
-package com.labsflix.bff.profile.vo;
+package com.labsflix.bff.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -3,9 +3,8 @@ package com.labsflix.bff.contents.controller;
 import java.util.List;
 
 import com.labsflix.bff.contents.service.ContentsService;
-import com.labsflix.bff.contents.vo.Content;
-import com.labsflix.bff.contents.vo.Season;
-import com.labsflix.bff.contents.vo.Trailer;
+import com.labsflix.bff.domain.Content;
+import com.labsflix.bff.domain.Season;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,12 +38,7 @@ public class ContentsController {
 	public List<Season> getAllEpisodes(@PathVariable(value = "id") String id) {
 		return contentsService.getAllEpisodes(id);
 	}
-	
-	@GetMapping("/contents/{id}/trailers")
-	public List<Trailer> getTrailers(@PathVariable(value = "id") String id) {
-		return contentsService.getTrailers(id);
-	}
-	
+
 	@GetMapping("/contents/{id}/similars")
 	public List<Content> getSimilars(@PathVariable(value = "id") String id, @RequestParam(value = "category") String category) {
 		return contentsService.getSmiliars(id, category);

@@ -1,4 +1,4 @@
-package com.labsflix.bff.category.vo;
+package com.labsflix.bff.domain;
 
 public class Category {
 	
