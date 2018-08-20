@@ -8,8 +8,6 @@ import javax.servlet.http.HttpSession;
 import com.labsflix.bff.domain.Account;
 import com.labsflix.bff.profile.service.ProfileService;
 import com.labsflix.bff.domain.Profile;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -29,6 +27,17 @@ public class HomeController {
 	@Autowired
 	public HomeController(ProfileService profileService) {
 		this.profileService = profileService;
+	}
+
+	@GetMapping("/")
+	public String root(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+
+		if (session.getAttribute("username") != null) {
+			session.removeAttribute("username");
+			session.removeAttribute("profile");
+		}
+		return "login";
 	}
 
 	@GetMapping("/index")
@@ -73,14 +82,7 @@ public class HomeController {
 			return "redirect:/index";
 		}
 
-		String username = (String) session.getAttribute("username");
-		if("lpeterson2a@google.co.uk".equals(username)){
-			return "index";
-		}else if("rbrooks29@si.edu".equals(username)){
-			return "index2";
-		}
-
-		return "index";
+		return "index-v3";
 	}
 
 	@GetMapping("/categories/{category}")

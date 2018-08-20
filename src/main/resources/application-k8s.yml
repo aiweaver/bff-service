@@ -12,6 +12,6 @@ api:
   bff:
     path: /
   services:
-    account-service: http://account-service:8081
-    contents-service: http://contents-service:8082
-    recommendation-service: http://recommendation-service:8083
+    account-service: http://account-service:8080
+    contents-service: http://contents-service:8080
+    recommendation-service: http://recommendation-service:8080
