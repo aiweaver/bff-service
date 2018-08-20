@@ -82,7 +82,7 @@ public class HomeController {
 			return "redirect:/index";
 		}
 
-		return "index-v3";
+		return "index";
 	}
 
 	@GetMapping("/categories/{category}")
