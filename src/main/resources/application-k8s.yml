@@ -14,4 +14,4 @@ api:
   services:
     account-service: http://account-service.ns-zcp-admin-01.svc.cluster.local:8080
     contents-service: http://contents-service.ns-zcp-admin-01.svc.cluster.local:8080
-    recommendation-service: http://recommendation-service.ns-zcp-admin-01.svc.cluster.local:8080
+    recommendation-service: http://recommendation-service:8080
