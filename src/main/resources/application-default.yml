@@ -1,4 +1,4 @@
-spring:
+sp spring:
   datasource:
     initialization-mode: always
     platform: h2
