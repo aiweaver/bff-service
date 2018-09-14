@@ -14,4 +14,5 @@ api:
   services:
     account-service: http://account-service.default.svc.cluster.local:8080
     contents-service: http://contents-service.default.svc.cluster.local:8080
-    recommendation-service: http://recommendation-service:8080
+    # recommendation-service: http://recommendation-service.not.available:8080
+    recommendation-service: http://recommendation-service.default.svc.cluster.local:8080
