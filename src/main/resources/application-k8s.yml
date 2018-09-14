@@ -12,6 +12,6 @@ api:
   bff:
     path: /
   services:
-    account-service: http://account-service.docker-for-desktop-cluster.local:8080
-    contents-service: http://contents-service.docker-for-desktop-cluster.local:8080
-    recommendation-service: http://recommendation-service.docker-for-desktop-cluster.local:8080
+    account-service: http://account-service.default.svc.cluster.local:8080
+    contents-service: http://contents-service.default.svc.cluster.local:8080
+    recommendation-service: http://recommendation-service:8080
