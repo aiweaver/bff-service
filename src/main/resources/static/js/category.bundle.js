@@ -5922,7 +5922,7 @@ var Footer = function (_React$Component) {
 						_react2.default.createElement('br', null),
 						'65, Eulji-ro, Jung-gu Seoul / President Jung Ho Park / Customer Center 114 (Free) without Toll Number or 1599-0011 (Paid)',
 						_react2.default.createElement('br', null),
-						'COPYRIGHT \xA9 SK CO., LTD. ALL RIGHTS RESERVED.'
+						'COPYRIGHT \xA9 SKT CO., LTD. ALL RIGHTS RESERVED.'
 					)
 				)
 			);
@@ -6159,7 +6159,7 @@ var Header = function (_React$Component) {
 					_react2.default.createElement(
 						'h1',
 						{ className: 'logo', onClick: this.goHome },
-						'Labsflix'
+						'SKT-AIC-DMIG'
 					),
 					_react2.default.createElement(
 						'div',
